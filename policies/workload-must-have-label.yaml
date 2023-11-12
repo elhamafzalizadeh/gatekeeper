@@ -1,0 +1,27 @@
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredLabels
+metadata:
+  name: workload-must-have-label
+spec:
+  match:
+    kinds:
+      - apiGroups: ["*"]
+        kinds:
+        - Ingress
+        - CronJob
+        - Service
+        - Secret
+        - Job
+        - Pod
+        - Deployment
+        - ReplicaSet
+        - StatefulSet
+        - DaemonSet
+    excludedNamespaces:
+    - kube-system
+    - gatekeeper-system
+  parameters:
+    labels:
+    - kube/environment
+    - kube/apptype
+    - kube/appname
