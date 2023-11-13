@@ -1,1 +1,26 @@
-# gatekeeper
+# Gatekeeper
+
+The Open Policy Agent (OPA) is an open-source, general-purpose policy engine that unifies policy enforcement across the stack.
+
+OPA provides a high-level declarative language that lets us specify policies as code and simple APIs to offload policy decision-making from our software.
+
+We can use OPA to enforce policies in Kubernetes.We have created the label policies according to the platform document.
+
+OPA Gatekeeper is a specialized project providing first-class integration between OPA and Kubernetes.
+
+## Installing Gatekeeper
+
+For installing gatekeeper we can use this manifest:
+
+
+
+To install the operator, follow these steps:
+
+1. Clone the repository:
+
+```
+git clone https://github.com/elhamafzalizadeh/gatekeeper.git
+cd gatekeeper/production/installation-manifest
+sudo kubectl apply -f gatekeeper.yaml
+
+```
