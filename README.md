@@ -39,7 +39,17 @@ sudo kubectl apply -f ConstraintTemplate-k8srequiredlabels.yaml
 
 ```
 
-
+```yaml
+apiVersion: tenancy.kiosk.sh/v1alpha1
+kind: Account
+metadata:
+  name: johns-account
+spec:
+  subjects:
+  - kind: ServiceAccount
+    name: john
+    namespace: kiosk
+```
 
 
 Now check the running pod of gatekeeper-system namespace:
