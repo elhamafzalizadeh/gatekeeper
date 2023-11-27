@@ -39,6 +39,10 @@ sudo kubectl apply -f ConstraintTemplate-k8srequiredlabels.yaml
 
 ```
 
+<details>
+<summary><b>View:ConstraintTemplate-k8srequiredlabels.yaml</b></summary>
+<br>
+
 ```yaml
 apiVersion: templates.gatekeeper.sh/v1
 kind: ConstraintTemplate
@@ -111,11 +115,11 @@ spec:
           def_msg := sprintf("Label <%v: %v> does not satisfy allowed regex: %v", [key, value, expected.allowedRegex])
           msg := get_message(input.parameters, def_msg)
         }
-
 ```
-</details>
+
 
 <br>
+</details>
 
-
+---
 Now check the running pod of gatekeeper-system namespace:
