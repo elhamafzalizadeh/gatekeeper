@@ -19,7 +19,7 @@ OPA Gatekeeper is a specialized project providing first-class integration betwee
 
 For installing gatekeeper follow these steps:
 
-###Clone the repository:
+### Clone the repository:
 
 ```
 git clone https://github.com/elhamafzalizadeh/gatekeeper.git
