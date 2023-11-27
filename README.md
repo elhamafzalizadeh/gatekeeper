@@ -122,4 +122,43 @@ spec:
 </details>
 
 ---
+
+## 3-policies
+
+Now you can create a policy for k8srequiredlabels.create policy for namespace first and then apply the policy for the workloads.
+
+```
+cd policies
+sudo kubectl apply -f namespace-must-have-label.yaml
+
+```
+
+<details>
+<summary><b>View:ns-must-have-label.yaml</b></summary>
+<br>
+
+```yaml
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredLabels
+metadata:
+  name: ns-must-have-label
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Namespace"]
+    excludedNamespaces:
+    - kube-system
+    - gatekeeper-system
+  parameters:
+    labels:
+    - kube/environment
+    - kube/apptype
+    - kube/appname
+
+sudo kubectl apply -f workload-must-have-label.yaml
+
+```
+
+
 Now check the running pod of gatekeeper-system namespace:
