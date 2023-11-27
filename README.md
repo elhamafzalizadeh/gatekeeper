@@ -15,7 +15,7 @@ OPA Gatekeeper is a specialized project providing first-class integration betwee
 * 3-policies
 
 
-## Installing Gatekeeper
+## 1-Installing Gatekeeper
 
 For installing gatekeeper follow these steps:
 
@@ -28,8 +28,16 @@ sudo kubectl apply -f gatekeeper.yaml
 
 ```
 
-## ConstraintTemplates
+## 2-ConstraintTemplates
 
+For each policy(constraint) you should define the ConstraintTemplates first (rego source).for example if you want create a policy to requires resources to contain specified labels,
+You should create the ConstraintTemplate which names k8srequiredlabels.
+
+```
+cd ConstraintTemplate
+sudo kubectl apply -f ConstraintTemplate-k8srequiredlabels.yaml
+
+```
 
 
 
