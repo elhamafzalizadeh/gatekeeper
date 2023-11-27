@@ -152,13 +152,51 @@ spec:
     - gatekeeper-system
   parameters:
     labels:
-    - kube/environment
-    - kube/apptype
-    - kube/appname
+    - app.kubernetes.io/environment
+    - app.kubernetes.io/appname
 
 sudo kubectl apply -f workload-must-have-label.yaml
 
 ```
 
+```
 
+sudo kubectl apply -f namespace-must-have-label.yaml
+
+```
+<details>
+<summary><b>View:ns-must-have-label.yaml</b></summary>
+<br>
+
+```yaml
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredLabels
+metadata:
+  name: workload-must-have-label
+spec:
+  match:
+    kinds:
+      - apiGroups: ["*"]
+        kinds:
+        - Ingress
+        - CronJob
+        - Service
+        - Secret
+        - Job
+        - Pod
+        - Deployment
+        - ReplicaSet
+        - StatefulSet
+        - DaemonSet
+    excludedNamespaces:
+    - kube-system
+    - gatekeeper-system
+  parameters:
+    labels:
+    - app.kubernetes.io/environment
+    - app.kubernetes.io/apptype
+    - app.kubernetes.io/appname
+    - app.kubernetes.io/version
+
+```
 Now check the running pod of gatekeeper-system namespace:
