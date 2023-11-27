@@ -8,15 +8,18 @@ We can use OPA to enforce policies in Kubernetes.We have created the label polic
 
 OPA Gatekeeper is a specialized project providing first-class integration between OPA and Kubernetes.
 
+# Steps:
+
+* 1-Installing Gatekeeper
+* 2-ConstraintTemplates
+* 3-policies
+
+
 ## Installing Gatekeeper
 
-For installing gatekeeper we can use this manifest:
+For installing gatekeeper follow these steps:
 
-
-
-To install the operator, follow these steps:
-
-1. Clone the repository:
+###Clone the repository:
 
 ```
 git clone https://github.com/elhamafzalizadeh/gatekeeper.git
@@ -24,3 +27,11 @@ cd gatekeeper/production/installation-manifest
 sudo kubectl apply -f gatekeeper.yaml
 
 ```
+
+## ConstraintTemplates
+
+
+
+
+
+Now check the running pod of gatekeeper-system namespace:
