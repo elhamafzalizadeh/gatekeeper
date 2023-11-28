@@ -293,6 +293,8 @@ spec:
           }
 
 ```
+
+```
 cd policies
 sudo kubectl apply -f container-must-have-probes.yaml 
 
