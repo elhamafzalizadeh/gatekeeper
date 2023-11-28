@@ -129,11 +129,14 @@ spec:
 
 Now you can create a policy for k8srequiredlabels.create policy for namespace first and then apply the policy for the workloads.
 
+#### Policy for namespace labeling
+
 ```
 cd policies
 sudo kubectl apply -f ns-must-have-label.yaml
 
 ```
+
 
 <details>
 <summary><b>View:ns-must-have-label.yaml</b></summary>
@@ -201,6 +204,11 @@ spec:
     - app.kubernetes.io/version
 
 ```
+
+<br>
+</details>
+
+---
 
 For each policy,create the ConstraintTemplates first and then create the policy(constraint) of that template.
 
