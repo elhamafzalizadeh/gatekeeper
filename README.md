@@ -165,6 +165,7 @@ spec:
 sudo kubectl apply -f workload-must-have-label.yaml
 
 ```
+
 <details>
 <summary><b>View:workload-must-have-label.yaml</b></summary>
 <br>
