@@ -161,8 +161,12 @@ spec:
     - app.kubernetes.io/appname
 
 
-
 ```
+
+<br>
+</details>
+
+---
 
 ```
 sudo kubectl apply -f workload-must-have-label.yaml
