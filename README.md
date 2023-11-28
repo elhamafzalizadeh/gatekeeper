@@ -26,6 +26,7 @@ cd gatekeeper/production/installation-manifest
 sudo kubectl apply -f gatekeeper.yaml
 
 ```
+Now check the running pods of gatekeeper-system namespace!
 
 ## 2-ConstraintTemplates
 
@@ -124,11 +125,13 @@ spec:
 
 ## 3-policies
 
+### Creating Policy for labeling
+
 Now you can create a policy for k8srequiredlabels.create policy for namespace first and then apply the policy for the workloads.
 
 ```
 cd policies
-sudo kubectl apply -f namespace-must-have-label.yaml
+sudo kubectl apply -f ns-must-have-label.yaml
 
 ```
 
@@ -154,17 +157,16 @@ spec:
     - app.kubernetes.io/environment
     - app.kubernetes.io/appname
 
+
+
+```
+
+```
 sudo kubectl apply -f workload-must-have-label.yaml
 
 ```
-
-```
-
-sudo kubectl apply -f namespace-must-have-label.yaml
-
-```
 <details>
-<summary><b>View:ns-must-have-label.yaml</b></summary>
+<summary><b>View:workload-must-have-label.yaml</b></summary>
 <br>
 
 ```yaml
@@ -198,4 +200,102 @@ spec:
     - app.kubernetes.io/version
 
 ```
-Now check the running pod of gatekeeper-system namespace:
+
+For each policy,create the ConstraintTemplates first and then create the policy(constraint) of that template.
+
+
+### Creating Policy for RequiredProbes
+
+another example is K8sRequiredProbes policy.This policy Requires Pods to have readiness and/or liveness probes.
+
+```
+cd ConstraintTemplate
+sudo kubectl apply -f ConstraintTemplate-k8srequiredprobes.yaml
+
+```
+
+<details>
+<summary><b>View:ConstraintTemplate-k8srequiredprobes.yaml</b></summary>
+<br>
+
+```yaml
+apiVersion: templates.gatekeeper.sh/v1
+kind: ConstraintTemplate
+metadata:
+  name: k8srequiredprobes
+  annotations:
+    metadata.gatekeeper.sh/title: "Required Probes"
+    metadata.gatekeeper.sh/version: 1.0.1
+    description: Requires Pods to have readiness and/or liveness probes.
+spec:
+  crd:
+    spec:
+      names:
+        kind: K8sRequiredProbes
+      validation:
+        openAPIV3Schema:
+          type: object
+          properties:
+            probes:
+              description: "A list of probes that are required (ex: `readinessProbe`)"
+              type: array
+              items:
+                type: string
+            probeTypes:
+              description: "The probe must define a field listed in `probeType` in order to satisfy the constraint (ex. `tcpSocket` satisfies `['tcpSocket', 'exec']`)"
+              type: array
+              items:
+                type: string
+  targets:
+    - target: admission.k8s.gatekeeper.sh
+      rego: |
+        package k8srequiredprobes
+
+        import data.lib.exclude_update.is_update
+
+        probe_type_set = probe_types {
+            probe_types := {type | type := input.parameters.probeTypes[_]}
+        }
+
+        violation[{"msg": msg}] {
+            # Probe fields are immutable.
+            not is_update(input.review)
+
+            container := input.review.object.spec.containers[_]
+            probe := input.parameters.probes[_]
+            probe_is_missing(container, probe)
+            msg := get_violation_message(container, input.review, probe)
+        }
+
+        probe_is_missing(ctr, probe) = true {
+            not ctr[probe]
+        }
+
+        probe_is_missing(ctr, probe) = true {
+            probe_field_empty(ctr, probe)
+        }
+
+        probe_field_empty(ctr, probe) = true {
+            probe_fields := {field | ctr[probe][field]}
+            diff_fields := probe_type_set - probe_fields
+            count(diff_fields) == count(probe_type_set)
+        }
+
+        get_violation_message(container, review, probe) = msg {
+            msg := sprintf("Container <%v> in your <%v> <%v> has no <%v>", [container.name, review.kind.kind, review.object.metadata.name, probe])
+        }
+      libs:
+        - |
+          package lib.exclude_update
+
+          is_update(review) {
+              review.operation == "UPDATE"
+          }
+
+```
+cd policies
+sudo kubectl apply -f container-must-have-probes.yaml
+
+```
+
+
