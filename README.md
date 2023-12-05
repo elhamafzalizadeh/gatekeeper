@@ -642,7 +642,7 @@ spec:
 </details>
 
 
-
+```
 
 keep calm!!! Gatekeeper takes care of your cluster :)
 
