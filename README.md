@@ -168,7 +168,7 @@ spec:
 
 ---
 
-#### Policy for workloads label
+#### Policy for workloads labels
 
 ```
 sudo kubectl apply -f workload-must-have-label.yaml
