@@ -316,3 +316,30 @@ sudo kubectl apply -f container-must-have-probes.yaml
 ```
 
 
+<details>
+<summary><b>View:container-must-have-probes.yaml</b></summary>
+<br>
+
+```yaml
+apiVersion: constraints.gatekeeper.sh/v1beta1
+kind: K8sRequiredProbes
+metadata:
+  name: container-must-have-probes
+spec:
+  match:
+    kinds:
+      - apiGroups: [""]
+        kinds: ["Pod","Deployment","ReplicaSet","StatefulSet","DaemonSet"]
+    excludedNamespaces:
+    - kube-system
+    - gatekeeper-system
+  parameters:
+    probes: ["readinessProbe", "livenessProbe"]
+    probeTypes: ["tcpSocket", "httpGet", "exec"]
+```
+
+<br>
+</details>
+
+---
+
