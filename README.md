@@ -34,7 +34,7 @@ For each policy(constraint) you should define the ConstraintTemplates first (reg
 You should create the ConstraintTemplate which names k8srequiredlabels.
 
 ```
-cd ConstraintTemplate
+cd ../ConstraintTemplate
 sudo kubectl apply -f ConstraintTemplate-k8srequiredlabels.yaml
 
 ```
