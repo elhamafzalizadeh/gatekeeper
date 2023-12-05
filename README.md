@@ -132,7 +132,7 @@ Now you can create a policy for k8srequiredlabels.Create policy for namespace fi
 #### Policy for namespace label
 
 ```
-cd policies
+cd ../policies
 sudo kubectl apply -f ns-must-have-label.yaml
 
 ```
