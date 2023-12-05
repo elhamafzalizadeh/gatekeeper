@@ -187,11 +187,6 @@ spec:
     kinds:
       - apiGroups: ["*"]
         kinds:
-        - Ingress
-        - CronJob
-        - Service
-        - Secret
-        - Job
         - Pod
         - Deployment
         - ReplicaSet
