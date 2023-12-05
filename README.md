@@ -127,7 +127,7 @@ spec:
 
 ### Creating Policy for labels
 
-Now you can create a policy for k8srequiredlabels.create policy for namespace first and then apply the policy for the workloads.
+Now you can create a policy for k8srequiredlabels.Create policy for namespace first and then workloads.
 
 #### Policy for namespace label
 
