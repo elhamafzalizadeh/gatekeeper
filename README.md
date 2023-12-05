@@ -30,7 +30,7 @@ Now check the running pods of gatekeeper-system namespace!
 
 ## 2-ConstraintTemplates
 
-For each policy(constraint) you should define the ConstraintTemplates first (rego source).for example if you want create a policy to requires resources to contain specified labels,
+For each policy(constraint) you should define the ConstraintTemplates first (rego source).For example if you want create a policy to require resources to contain specified labels,
 You should create the ConstraintTemplate which names k8srequiredlabels.
 
 ```
