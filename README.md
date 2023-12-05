@@ -125,7 +125,7 @@ spec:
 
 ## 3-policies
 
-### Creating Policy for labels
+### Policy for labels
 
 Now you can create a policy for k8srequiredlabels.Create policy for namespace first and then workloads.
 
@@ -214,7 +214,7 @@ spec:
 For each policy,create the ConstraintTemplates first and then create the policy(constraint) of that template.
 
 
-### Creating Policy for RequiredProbes
+### Policy for RequiredProbes
 
 Another example is K8sRequiredProbes policy.This policy Requires Pods to have readiness and/or liveness probes.
 
@@ -343,7 +343,7 @@ spec:
 
 ---
 
-### Creating Policy for RequiredResources(Container limit&request)
+### Policy for RequiredResources(Container limit&request)
 
 ```
 cd ../ConstraintTemplate
