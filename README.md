@@ -216,10 +216,10 @@ For each policy,create the ConstraintTemplates first and then create the policy(
 
 ### Creating Policy for RequiredProbes
 
-another example is K8sRequiredProbes policy.This policy Requires Pods to have readiness and/or liveness probes.
+Another example is K8sRequiredProbes policy.This policy Requires Pods to have readiness and/or liveness probes.
 
 ```
-cd ConstraintTemplate
+cd ../ConstraintTemplate
 sudo kubectl apply -f ConstraintTemplate-k8srequiredprobes.yaml
 
 ```
