@@ -12,6 +12,5 @@ spec:
     - gatekeeper-system
   parameters:
     labels:
-    - kube/environment
-    - kube/apptype
-    - kube/appname
+    - app.kubernetes.io/environment
+    - app.kubernetes.io/appname
