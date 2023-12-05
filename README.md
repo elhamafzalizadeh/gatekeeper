@@ -22,7 +22,7 @@ For installing gatekeeper follow these steps:
 
 ```
 git clone https://github.com/elhamafzalizadeh/gatekeeper.git
-cd gatekeeper/production/installation-manifest
+cd installation-manifest
 sudo kubectl apply -f gatekeeper.yaml
 
 ```
