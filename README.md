@@ -125,11 +125,11 @@ spec:
 
 ## 3-policies
 
-### Creating Policy for labeling
+### Creating Policy for labels
 
 Now you can create a policy for k8srequiredlabels.create policy for namespace first and then apply the policy for the workloads.
 
-#### Policy for namespace labeling
+#### Policy for namespace label
 
 ```
 cd policies
